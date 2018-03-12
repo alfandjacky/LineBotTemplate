@@ -28,14 +28,27 @@ var bot *linebot.Client
 func main() {
 	var err error
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
-	san := rand.Intn(100)
-	str1 := strconv.Itoa(san)
-	linebot.NewTextMessage(str1)
 	log.Println("Bot:", bot, " err:", err)
+	http.HandleFunc("/callback", callbackran)
 	http.HandleFunc("/callback", callbackHandler)
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
+}
+
+fnuc callbackran(w http.ResponseWriter, r *http.Request){
+	if err != nil {
+		if err == linebot.ErrInvalidSignature {
+			w.WriteHeader(400)
+		} else {
+			w.WriteHeader(500)
+		}
+		return
+	}
+
+	san := rand.Intn(100)
+	str1 := strconv.Itoa(san)
+	linebot.NewTextMessage(str1)
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
