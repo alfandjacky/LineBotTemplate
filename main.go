@@ -33,7 +33,6 @@ func main() {
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
-	log.Println(s5)
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
