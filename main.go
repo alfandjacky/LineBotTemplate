@@ -31,6 +31,7 @@ func main() {
 	log.Println("Bot:", bot, " err:", err)
 	san := rand.Intn(100)
 	str1 := strconv.Itoa(san)  
+	log.Println(str1)
 	http.HandleFunc("/callback", callbackHandler)
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
