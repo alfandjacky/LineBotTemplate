@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"os"
 	"math/rand"
+	"strconv"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -28,7 +29,8 @@ func main() {
 	var err error
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	san := rand.Intn(100)
-	linebot.NewTextMessage(san)
+	str1 := strconv.Itoa(san)
+	linebot.NewTextMessage(str1)
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
 	port := os.Getenv("PORT")
