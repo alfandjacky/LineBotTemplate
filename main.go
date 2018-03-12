@@ -25,18 +25,10 @@ import (
 
 var bot *linebot.Client
 
-fnuc callbackran(w http.ResponseWriter, r *http.Request){
-	san := rand.Intn(100)
-	str1 := strconv.Itoa(san)
-	linebot.NewTextMessage(str1)
-}
-
-
 func main() {
 	var err error
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
-	http.HandleFunc("/callback", callbackran)
 	http.HandleFunc("/callback", callbackHandler)
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
