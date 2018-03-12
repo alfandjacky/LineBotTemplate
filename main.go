@@ -26,15 +26,6 @@ import (
 var bot *linebot.Client
 
 fnuc callbackran(w http.ResponseWriter, r *http.Request){
-	if err != nil {
-		if err == linebot.ErrInvalidSignature {
-			w.WriteHeader(400)
-		} else {
-			w.WriteHeader(500)
-		}
-		return
-	}
-
 	san := rand.Intn(100)
 	str1 := strconv.Itoa(san)
 	linebot.NewTextMessage(str1)
