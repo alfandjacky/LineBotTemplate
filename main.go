@@ -36,14 +36,14 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
 }
-func diceroll(diceside int)(san int){
+func diceroll(diceside int) int {
 	san := rand.Intn(diceside)
 	return san
 }
-func d66()(diceresult int){
+func d66() int {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
-	diceresult := 10*dice1 + dice2
+	diceresult := dice1 + dice2
 	return diceresult
 }
 
