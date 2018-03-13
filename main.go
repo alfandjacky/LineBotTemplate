@@ -59,12 +59,18 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				switch message.Text{
 				case "D66":
 					Str1 = strconv.Itoa(d66())
-				default :
-					Str1 = "沒東西"
-				}
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(Str1)).Do()
+				err != nil {
 					log.Print(err)
 				} 
+				default :
+					Str1 = "沒東西"
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(Str1)).Do()
+				err != nil {
+					log.Print(err)
+				} 
+				}
+				
 			}
 		}
 	}
@@ -82,3 +88,5 @@ func d66() int {
 	diceresult := dice1*10 + dice2
 	return diceresult
 }
+//if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {
+					log.Print(err)
