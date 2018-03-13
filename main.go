@@ -54,6 +54,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
 				if message.Text == "D66" {
+					var str1 = strconv.Itoa(d66()) 
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ d66())).Do(); err != nil {
 					log.Print(err)
 				 }
@@ -70,17 +71,12 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	var san = rand.Intn(diceside)
 	return san
 }
-//將數字輸出成文字
-	func (word)(math int){
-	var str1 = strconv.Itoa(math) 
-	return str1
-}
+
 //執行D66
 	func (d66)(){
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	var diceresult = 10*dice1 + dice2
-	var pword = word(diceresult)
-	return pword
+	return diceresult
 }
 }
