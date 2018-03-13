@@ -57,18 +57,18 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				//以上已經篩選好訊息 純文字
 				if message.Text == "D66" {
 					var str1 = strconv.Itoa(d66()) 
-				output
-				} 
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ str1)).Do(); err != nil {
+					log.Print(err)
+				} else {
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text)).Do(); err != nil {
+					log.Print(err)
+					}
+				}
 			}
 		}
 	}
 }
 }
-//輸出文字
-func output()(){
-	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ str1)).Do(); err != nil {
-					log.Print(err)
-	}
 //產生隨機數
 func diceroll(diceside int) int {
 	san := rand.Intn(diceside)
