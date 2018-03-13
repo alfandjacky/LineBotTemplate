@@ -23,7 +23,7 @@ import (
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
-var Str1 = "沒東西"
+var Str1 string
 
 var bot *linebot.Client
 
