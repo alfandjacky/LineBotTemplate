@@ -51,7 +51,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	for _, event := range events {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
-			case *linebot.TextMessage:
+			caseoo *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
 				if message.Text == "D66" {
 					var str1 = strconv.Itoa(d66()) 
@@ -67,15 +67,15 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //隨機數產生
-	func diceroll(diceside) {
+	func dicerolloo(diceside) {
 	var san = rand.Intn(diceside)
 	return san
 }
 
 //執行D66
 	func d66(){
-	var dice1 = diceroll(6)
-	var dice2 = diceroll(6)
+	var dice1 = dicerolloo(6)
+	var dice2 = dicerolloo(6)
 	var diceresult = 10*dice1 + dice2
 	return diceresult
 }
