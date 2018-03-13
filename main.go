@@ -58,9 +58,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				//以上已經篩選好訊息 純文字
 				switch message.Text{
 				case "D66":
-					var Str1 = strconv.Itoa(d66())
+					Str1 = strconv.Itoa(d66())
 				default :
-					var Str1 = "沒東西"
+					Str1 = "沒東西"
 				}
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {
 					log.Print(err)
