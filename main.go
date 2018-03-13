@@ -34,11 +34,11 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
 }
-func diceroll(diceside){
+func diceroll(diceside int)(san int){
 	var san = rand.Intn(diceside)
 	return san
 }
-func d66(){
+func d66()(diceresult int){
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	var diceresult = 10*dice1 + dice2
@@ -73,5 +73,4 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-}
 }
