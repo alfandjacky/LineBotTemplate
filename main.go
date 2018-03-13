@@ -67,7 +67,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //隨機數產生
-func Diceroll (diceside){
+func diceroll (diceside){
 	san := rand.Intn(diceside)
 	return san
 }
@@ -78,8 +78,8 @@ func word (math int){
 }
 //執行D66
 func d66 (){
-	dice1 := Diceroll(6)
-	dice2 := Diceroll(6)
+	dice1 := diceroll(6)
+	dice2 := diceroll(6)
 	diceresult := 10*dice1 + dice2
 	pword := word(diceresult)
 	return pword
