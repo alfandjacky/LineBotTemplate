@@ -66,7 +66,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
-}
+
 //產生隨機數
 func diceroll(diceside int) int {
 	san := rand.Intn(diceside)
