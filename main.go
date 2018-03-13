@@ -67,13 +67,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //隨機數產生
-	func (diceroll)(diceside int){
+	func () diceroll (diceside int){
 	var san = rand.Intn(diceside)
 	return san
 }
 
 //執行D66
-	func (d66)(){
+	func () d66(){
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	var diceresult = 10*dice1 + dice2
