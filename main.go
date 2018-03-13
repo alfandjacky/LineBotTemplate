@@ -88,5 +88,4 @@ func d66() int {
 	diceresult := dice1*10 + dice2
 	return diceresult
 }
-//if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {
-					log.Print(err)
+//if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {log.Print(err)}
