@@ -19,6 +19,7 @@ import (
 	"os"
 	"math/rand"
 	"strconv"
+	"time"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -38,9 +39,7 @@ func main() {
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
-	san := rand.Intn(100)
-	str1 := strconv.Itoa(san)  
-
+	 
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
 			w.WriteHeader(400)
@@ -54,10 +53,40 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+str1)).Do(); err != nil {
+				//以上已經篩選好訊息 純文字
+				if message.Text == "D66" {
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ d66())).Do(); err != nil {
+					log.Print(err)
+				 }
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+str1)).Do(); err != nil {
 					log.Print(err)
 				}
 			}
 		}
 	}
 }
+
+//隨機數產生
+func Diceroll (diceside){
+	san := rand.Intn(diceside)
+	return san
+}
+//將數字輸出成文字
+func word (math int){
+	str1 := strconv.Itoa(math) 
+	return str1
+}
+//執行D66
+func d66 (){
+	dice1 := Diceroll(6)
+	dice2 := Diceroll(6)
+	diceresult := 10*dice1 + dice2
+	pword := word(diceresult)
+	return pword
+}
+
+
+
+
+
+
