@@ -67,17 +67,17 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //隨機數產生
-func diceroll(diceside int){
+	func (diceroll)(diceside int){
 	san := rand.Intn(diceside)
 	return san
 }
 //將數字輸出成文字
-func word(math int){
+	func (word)(math int){
 	str1 := strconv.Itoa(math) 
 	return str1
 }
 //執行D66
-func d66(){
+	func (d66)(){
 	dice1 := diceroll(6)
 	dice2 := diceroll(6)
 	diceresult := 10*dice1 + dice2
