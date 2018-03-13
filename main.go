@@ -34,7 +34,16 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
 }
-
+	func diceroll(diceside){
+	var san = rand.Intn(diceside)
+	return san
+}
+	func d66(){
+	var dice1 = diceroll(6)
+	var dice2 = diceroll(6)
+	var diceresult = 10*dice1 + dice2
+	return diceresult
+}
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
@@ -64,18 +73,4 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-}
-
-//隨機數產生
-	func (dicerolloo(diceside)){
-	var san = rand.Intn(diceside)
-	return san
-}
-
-//執行D66
-	func d66(){
-	var dice1 = dicerolloo(6)
-	var dice2 = dicerolloo(6)
-	var diceresult = 10*dice1 + dice2
-	return diceresult
 }
