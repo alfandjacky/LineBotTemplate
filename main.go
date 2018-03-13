@@ -19,7 +19,6 @@ import (
 	"os"
 	"math/rand"
 	"strconv"
-	"time"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -58,7 +57,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ d66())).Do(); err != nil {
 					log.Print(err)
 				 }
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+str1)).Do(); err != nil {
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text)).Do(); err != nil {
 					log.Print(err)
 				}
 			}
@@ -68,20 +67,20 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 //隨機數產生
 	func (diceroll)(diceside int){
-	san := rand.Intn(diceside)
+	var san = rand.Intn(diceside)
 	return san
 }
 //將數字輸出成文字
 	func (word)(math int){
-	str1 := strconv.Itoa(math) 
+	var str1 = strconv.Itoa(math) 
 	return str1
 }
 //執行D66
 	func (d66)(){
-	dice1 := diceroll(6)
-	dice2 := diceroll(6)
-	diceresult := 10*dice1 + dice2
-	pword := word(diceresult)
+	var dice1 = diceroll(6)
+	var dice2 = diceroll(6)
+	var diceresult = 10*dice1 + dice2
+	var pword = word(diceresult)
 	return pword
 }
 }
