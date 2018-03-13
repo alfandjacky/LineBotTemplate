@@ -27,6 +27,7 @@ var bot *linebot.Client
 
 func main() {
 	var err error
+	rand.Seed(time.Now().UnixNano())
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
