@@ -19,6 +19,7 @@ import (
 	"os"
 	"math/rand"
 	"strconv"
+	"time"
 	
 	"github.com/line/line-bot-sdk-go/linebot"
 )
