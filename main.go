@@ -92,11 +92,11 @@ func cut(testword string) string {
 	a, _ := regexp.MatchString("^cc", testword)
 	b, _ := regexp.MatchString("^AS", testword)
 	c, _ := regexp.MatchString("^D66", testword)
-	if a != nil{
+	if a {
 		word = "cc"
-	} else if b != nil{
+	} else if b {
 		word = "AS"
-	} else if c != nil{
+	} else if c {
 		word = "D66"
 	} 
 	return word
