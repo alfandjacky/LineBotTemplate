@@ -89,14 +89,14 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 //文字切片+判斷
 func cut(testword string) string {
 	var word string
-	if true, _ == regexp.MatchString("^cc", testword){
+	if regexp.MatchString("^cc", testword) != null {
 		word = "cc"
-	} else if true, _ == regexp.MatchString("^AS", testword){
+	} else if regexp.MatchString != null ("^AS", testword){
 		word = "AS"
-	} else if true, _ == regexp.MatchString("^D66", testword){
+	} else if regexp.MatchString != null ("^D66", testword){
 		word = "D66"
 	} 
-	return word
+	expression word
 }
 
 //產生隨機數
