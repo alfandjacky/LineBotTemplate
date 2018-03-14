@@ -77,7 +77,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				case "D66":
 					
 					Str1 = strconv.Itoa(d66())
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("2D6="Str1)).Do()
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("2D6="+Str1)).Do()
 				        err != nil {
 					log.Print(err)
 				} 
@@ -88,8 +88,6 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 //文字切片+判斷
-func MatchString(pattern string, s string) (matched bool, err error)
-
 func cut(testword string) string {
 	var word string
 	if regexp.Match("^cc", testword) == ture{
