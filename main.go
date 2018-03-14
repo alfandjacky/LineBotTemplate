@@ -15,7 +15,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"bytes"
 	"regexp"
 	"net/http"
 	"os"
@@ -90,13 +89,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 //文字切片+判斷
 func cut(testword string) string {
 	var word string
-	if regexp.Match("^cc", testword) == ture{
+	if regexp.MatchString("^cc", testword) == ture{
 		word = "cc"
 		return word
-	} else if regexp.Match("^AS", testword) == ture{
+	} else if regexp.MatchString("^AS", testword) == ture{
 		word = "AS"
 		return word
-	} else if regexp.Match("^D66", testword) == ture{
+	} else if regexp.MatchString("^D66", testword) == ture{
 		word = "D66"
 		return word
 	} 
@@ -108,7 +107,7 @@ func diceroll(diceside int) int {
 	return san
 }
 //D66判定
-func D66() int {
+func d66() int {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	diceresult := dice1*10 + dice2
