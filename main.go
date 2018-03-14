@@ -15,6 +15,8 @@ package main
 import (
 	"fmt"
 	"log"
+	"bytes"
+	"regexp"
 	"net/http"
 	"os"
 	"math/rand"
@@ -56,17 +58,27 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
-				switch message.Text{
-				case "D66":
-					Str1 = strconv.Itoa(d66())
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(Str1)).Do()
-				err != nil {
+				title := cut(message.Text)
+				
+				//這邊要想辦法切文字然後回傳結果
+				//切好的文字傳到要帶入的數值
+				//下面判斷條件
+				switch title {
+				case "cc":
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("克蘇魯擲骰")).Do()
+				        err != nil {
 					log.Print(err)
 				} 
-				default :
-					Str1 = "沒東西"
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(Str1)).Do()
-				err != nil {
+				case "AS":
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("絕對隸奴擲骰")).Do()
+				        err != nil {
+					log.Print(err)
+				} 
+				case "D66":
+					
+					Str1 = strconv.Itoa(d66())
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("2D6="Str1)).Do()
+				        err != nil {
 					log.Print(err)
 				} 
 				}
@@ -75,6 +87,22 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+//文字切片+判斷
+func MatchString(pattern string, s string) (matched bool, err error)
+
+func cut(testword string) string {
+	var word string
+	if regexp.Match("^cc", testword) == ture{
+		word = "cc"
+		return word
+	} else if regexp.Match("^AS", testword) == ture{
+		word = "AS"
+		return word
+	} else if regexp.Match("^D66", testword) == ture{
+		word = "D66"
+		return word
+	} 
+}
 
 //產生隨機數
 func diceroll(diceside int) int {
@@ -82,10 +110,13 @@ func diceroll(diceside int) int {
 	return san
 }
 //D66判定
-func d66() int {
+func D66() int {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	diceresult := dice1*10 + dice2
 	return diceresult
 }
+
+	
+
 //if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+ Str1)).Do(); err != nil {log.Print(err)}
