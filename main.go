@@ -96,7 +96,7 @@ func cut(testword string) string {
 	} else if regexp.MatchString != null ("^D66", testword){
 		word = "D66"
 	} 
-	expression word
+	return word
 }
 
 //產生隨機數
