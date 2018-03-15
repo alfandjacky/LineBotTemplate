@@ -108,8 +108,7 @@ func cut(testword string) string {
 		word = "AS"
 	} else if c {
 		word = "D66"
-	} 
-	else if c {
+	} else if d {
 		word = "te"
 	} 
 	return word
