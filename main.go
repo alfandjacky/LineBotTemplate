@@ -64,37 +64,45 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				//下面判斷條件
 				switch title {
 				case "te":
-					
+					wordtitle := tetitle()
 				case "cc":
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("克蘇魯擲骰")).Do()
-				        err != nil {
-					log.Print(err)
-				} 
+					wordtitle := coc7thtitle()
 				case "AS":
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("絕對隸奴擲骰")).Do()
-				        err != nil {
-					log.Print(err)
-				} 
+					wordtitle := asthtitle()
 				case "D66":
-					
-					Str1 = strconv.Itoa(d66())
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("2D6="+Str1)).Do()
+					wordtitle := d66thtitle()
+				}
+				//負責穿傳出訊息
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
 				        err != nil {
 					log.Print(err)
 				} 
-				}
-				
+				//負責傳出訊息
 			}
 		}
 	}
 }
-//輸出用
-func wordout(string) string {
-	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("測試 ")).Do()
-				        err != nil {
-					log.Print(err)
-					}
+//測試
+func tetitle() string {
+	word := "測試輸出:"
+	return word
 }
+//克蘇魯7th擲骰
+func coc7thtitle() string {
+	word := "CoC7th擲骰:"
+	return word
+}
+//絕對奴隸擲骰
+func astitle() string {
+	word := "絕對隸奴擲骰:"
+	return word
+}
+//D66擲骰
+func d66title() string {
+	word := "D66擲骰:"
+	return word
+}
+
 //文字切片+判斷
 func cut(testword string) string {
 	var word string
@@ -120,11 +128,12 @@ func diceroll(diceside int) int {
 	return san
 }
 //D66判定
-func d66() int {
+func d66() string {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
 	diceresult := dice1*10 + dice2
-	return diceresult
+	Str1 := strconv.Itoa(diceresult)
+	return Str1
 }
 
 	
