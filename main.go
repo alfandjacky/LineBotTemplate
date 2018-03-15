@@ -106,7 +106,7 @@ func d66title() string {
 //文字切片+判斷
 func cut(testword string) string {
 	var word string
-	a, _ := regexp.MatchString("^cc", testword)
+	a, _ := regexp.MatchString(/^cc/i, testword)
 	b, _ := regexp.MatchString("^AS", testword)
 	c, _ := regexp.MatchString("^D66", testword)
 	d, _ := regexp.MatchString("^te", testword)
