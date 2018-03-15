@@ -63,6 +63,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				//切好的文字傳到要帶入的數值
 				//下面判斷條件
 				switch title {
+				case "te":
+					
 				case "cc":
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("克蘇魯擲骰")).Do()
 				        err != nil {
@@ -86,18 +88,29 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+//輸出用
+func wordout(string) string {
+	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("測試 ")).Do()
+				        err != nil {
+					log.Print(err)
+					}
+}
 //文字切片+判斷
 func cut(testword string) string {
 	var word string
 	a, _ := regexp.MatchString("^cc", testword)
 	b, _ := regexp.MatchString("^AS", testword)
 	c, _ := regexp.MatchString("^D66", testword)
+	d, _ := regexp.MatchString("^te", testword)
 	if a {
 		word = "cc"
 	} else if b {
 		word = "AS"
 	} else if c {
 		word = "D66"
+	} 
+	else if c {
+		word = "te"
 	} 
 	return word
 }
