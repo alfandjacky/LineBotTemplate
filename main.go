@@ -58,19 +58,19 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
 				title := cut(message.Text)
-				
+				var wordtitle string
 				//這邊要想辦法切文字然後回傳結果
 				//切好的文字傳到要帶入的數值
 				//下面判斷條件
 				switch title {
 				case "te":
-					wordtitle := tetitle()
+					wordtitle = tetitle()
 				case "cc":
-					wordtitle := coc7thtitle()
+					wordtitle = coc7thtitle()
 				case "AS":
-					wordtitle := asthtitle()
+					wordtitle = astitle()
 				case "D66":
-					wordtitle := d66thtitle()
+					wordtitle = d66title()
 				}
 				//負責穿傳出訊息
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
