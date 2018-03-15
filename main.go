@@ -107,9 +107,9 @@ func d66title() string {
 func cut(testword string) string {
 	var word string
 	a, _ := regexp.MatchString("(?i:^cc)", testword)
-	b, _ := regexp.MatchString("^AS", testword)
-	c, _ := regexp.MatchString("^D66", testword)
-	d, _ := regexp.MatchString("^te", testword)
+	b, _ := regexp.MatchString("(?i:^AS)", testword)
+	c, _ := regexp.MatchString("(?i:^D66)", testword)
+	d, _ := regexp.MatchString("(?i:^te)", testword)
 	if a {
 		word = "cc"
 	} else if b {
