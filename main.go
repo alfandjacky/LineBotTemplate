@@ -57,14 +57,14 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
-				title := cut(message.Text)
+				title := titleread(message.Text)
+				//傳出句首是什麼
 				var wordtitle string
-				//這邊要想辦法切文字然後回傳結果
-				//切好的文字傳到要帶入的數值
-				//下面判斷條件
+				//先宣告要傳的文字再來組合
+				//下面判斷條件什麼字首做什麼事
 				switch title {
 				case "te":
-					wordtitle = tetitle()
+					wordtitle = tetitle(message.Text)
 				case "cc":
 					wordtitle = coc7thtitle()
 				case "AS":
@@ -83,13 +83,15 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 //測試
-func tetitle() string {
+func tetitle(inputw string) string {
+	var ar []
 	word := "測試輸出:"
 	return word
 }
 //克蘇魯7th擲骰
 func coc7thtitle() string {
-	word := "CoC7th擲骰:"
+	word := "CoC7th"
+	
 	return word
 }
 //絕對奴隸擲骰
@@ -103,8 +105,8 @@ func d66title() string {
 	return word
 }
 
-//文字切片+判斷
-func cut(testword string) string {
+//句首判斷
+func titleread(testword string) string {
 	var word string
 	a, _ := regexp.MatchString("(?i:^cc)", testword)
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
