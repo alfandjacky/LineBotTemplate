@@ -128,13 +128,13 @@ func diceroll(diceside int) int {
 	san := rand.Intn(diceside)+1
 	return san
 }
+
+
 //D66判定
-func d66() string {
+func d66() int {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
-	diceresult := dice1*10 + dice2
-	Str1 := strconv.Itoa(diceresult)
-	return Str1
+	return dice1 , dice1
 }
 
 	
