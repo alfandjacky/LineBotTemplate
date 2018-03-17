@@ -64,7 +64,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				//下面判斷條件什麼字首做什麼事
 				switch title {
 				case "te":
-					wordtitle = tetitle(message.Text)
+					wordtitle = tetitle()
 				case "cc":
 					wordtitle = coc7thtitle()
 				case "AS":
