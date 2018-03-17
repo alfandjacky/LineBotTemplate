@@ -83,8 +83,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 //測試
-func tetitle(inputw string) string {
-	var ar []
+func tetitle() string {
 	word := "測試輸出:"
 	return word
 }
