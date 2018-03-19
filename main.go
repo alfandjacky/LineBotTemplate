@@ -100,7 +100,7 @@ func cutmath(wordin string) (int, int) {
 func ddtitle(wordin string) string {
 	word := "基本擲骰:"
 	dicenumber, diceside := cutmath(wordin)
-	diceresult := [dicenumber]int
+	diceresult := make([]int, dicenumber)
 	for a := dicenumber ; a > 0 ; a = a-1 { 
 		tmemath := diceroll(diceside) 
 		diceresult [a-1] = tmemath
@@ -144,7 +144,7 @@ func titleread(testword string) string {
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
-	e, _ := regexp.MatchString("^\d+(?i:d)\d+", testword)
+	e, _ := regexp.MatchString("^[0-9]+(?i:d)[0-9]+", testword)
 	switch aa{
 		case a :
 		word = "cc"
