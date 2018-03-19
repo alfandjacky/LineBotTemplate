@@ -16,7 +16,6 @@ import (
 	"fmt"
 	"log"
 	"regexp"
-	"strconv"
 	"net/http"
 	"os"
 	"math/rand"
@@ -87,7 +86,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //普通擲骰正則表達式提取數字
-func cutmath(wordin string) int{
+func cutmath(wordin string) (int, int) {
 	var mdm = regexp.MustCompile(`\d+(?i:d)\d+`)
 	var md = regexp.MustCompile(`\d+(?i:d)`)
 	var dm = regexp.MustCompile(`(?i:d)\d+`)
@@ -146,15 +145,15 @@ func titleread(testword string) string {
 	d, _ := regexp.MatchString("(?i:^te)", testword)
 	e, _ := regexp.MatchString("^\d+(?i:d)\d+", testword)
 	switch {
-		case a :
+		case a == ture :
 		word = "cc"
-		case b :
+		case b == ture :
 		word = "AS"
-		case c :
+		case c == ture :
 		word = "D66"
-		case d :
+		case d == ture :
 		word = "te"
-		case e :
+		case e == ture :
 		word = "DD"
 } 
 	return word
