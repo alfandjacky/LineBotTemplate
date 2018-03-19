@@ -106,7 +106,8 @@ func ddtitle(wordin string) string {
 		diceresult [a-1] = tmemath
 	}
 	for a := dicenumber ; a > 0 ; a = a-1 { 
-		word = word+strconv.Itoa(diceresult [a-1]) 
+		word1 := strconv.Itoa(diceresult [a-1])
+		word = word + word1 
 	}
 	return word
 	
