@@ -108,7 +108,7 @@ func ddtitle(wordin string) string {
 	}
 	for i:=0; i < dicenumber ; i++ { 
 		word1 := strconv.Itoa(diceresult[i])
-		if i=0 {
+		if i == 0 {
 			word = word + word1
 		}else{
 		word = word +","+ word1
