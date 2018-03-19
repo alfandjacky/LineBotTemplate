@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strconv"
 	"net/http"
 	"os"
 	"math/rand"
@@ -71,8 +72,10 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					wordtitle = astitle()
 				case "D66":
 					wordtitle = d66title()
+				case "DD":
+					wordtitle = ddtitle(message.Text)
 				}
-				//負責穿傳出訊息
+				//負責傳出訊息
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
 				        err != nil {
 					log.Print(err)
@@ -82,22 +85,52 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+//普通擲骰正則表達式提取數字
+func cutmath(wordin string) int{
+	var mdm = regexp.MustCompile(`\d+(?i:d)\d+`)
+	var md = regexp.MustCompile(`\d+(?i:d)`)
+	var dm = regexp.MustCompile(`(?i:d)\d+`)
+	word := mdm.FindString(wordin)
+	math1 := md.ndString(word)
+	math2 := dm.ndString(word)
+	return math1 , math2
+}
+
+//普通擲骰
+func ddtitle(wordin string) string {
+	word : "基本擲骰:"
+	dicenumber , diceside := cutmath(wordin)
+	diceresult := [dicenumber]int
+	for a := dicenumber ; a > 0 ; a = a-1 { 
+		tmemath := diceroll(diceside) 
+		diceresult [a-1] = tmemath
+	}
+	for a := dicenumber ; a > 0 ; a = a-1 { 
+		word = word+strconv.Itoa(diceresult [a-1]) 
+	}
+	return word
+	
+}
+
 //測試
 func tetitle() string {
 	word := "測試輸出:"
 	return word
 }
+
 //克蘇魯7th擲骰
 func coc7thtitle() string {
 	word := "CoC7th"
-	
 	return word
 }
+
 //絕對奴隸擲骰
 func astitle() string {
 	word := "絕對隸奴擲骰:"
 	return word
 }
+
 //D66擲骰
 func d66title() string {
 	word := "D66擲骰:"
@@ -111,15 +144,19 @@ func titleread(testword string) string {
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
-	if a {
+	e, _ := regexp.MatchString("^(\d+(?i:d)\d+)", testword)
+	switch {
+		case a :
 		word = "cc"
-	} else if b {
+		case b :
 		word = "AS"
-	} else if c {
+		case c :
 		word = "D66"
-	} else if d {
+		case d :
 		word = "te"
-	} 
+		case e :
+		word = "DD"
+} 
 	return word
 }
 
