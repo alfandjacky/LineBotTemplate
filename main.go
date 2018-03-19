@@ -109,7 +109,9 @@ func ddtitle(wordin string) string {
 		word1 := strconv.Itoa(diceresult[a-1])
 		word = word + word1 
 	}
-	return word
+	mmmm := string(diceresult)
+	ert := word + mmmm
+	return ert
 	
 }
 
