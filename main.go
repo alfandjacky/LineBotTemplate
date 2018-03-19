@@ -98,7 +98,7 @@ func cutmath(wordin string) (int, int) {
 
 //普通擲骰
 func ddtitle(wordin string) string {
-	word := "基本擲骰:"
+	word := "基本擲骰:/n("
 	dicenumber, diceside := cutmath(wordin)
 	diceresult := make([]int, dicenumber)
 	
@@ -108,9 +108,9 @@ func ddtitle(wordin string) string {
 	}
 	for i:=0; i < dicenumber ; i++ { 
 		word1 := strconv.Itoa(diceresult[i])
-		word = word + word1
+		word = word +","+ word1
 	}
-	word = word + "我不知道" + strconv.Itoa(dicenumber) + strconv.Itoa(len(diceresult))
+	word = word + ")"
 	return word
 	
 }
