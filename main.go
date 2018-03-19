@@ -91,8 +91,8 @@ func cutmath(wordin string) (int, int) {
 	var md = regexp.MustCompile(`\d+(?i:d)`)
 	var dm = regexp.MustCompile(`(?i:d)\d+`)
 	word := mdm.FindString(wordin)
-	math1 := md.FindString(word)
-	math2 := dm.FindString(word)
+	math1 ,err :=strconv.Atoi(md.FindString(word))
+	math2 ,err :=strconv.Atoi(dm.FindString(word))
 	return math1 , math2
 }
 
