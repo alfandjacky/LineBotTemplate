@@ -102,11 +102,11 @@ func ddtitle(wordin string) string {
 	dicenumber, diceside := cutmath(wordin)
 	diceresult := make([]int, dicenumber)
 	
-	for i:=0; i < len(diceresult); i++ { 
+	for i:=0; i < dicenumber ; i++ { 
 		tmemath := diceroll(diceside) 
 		diceresult[i-1] = tmemath
 	}
-	for i:=0; i < len(diceresult); i++ { 
+	for i:=0; i < dicenumber ; i++ { 
 		word1 := strconv.Itoa(diceresult[i-1])
 		word = word + word1
 	}
