@@ -104,10 +104,10 @@ func ddtitle(wordin string) string {
 	
 	for i:=0; i < dicenumber ; i++ { 
 		tmemath := diceroll(diceside) 
-		diceresult[i-1] = tmemath
+		diceresult[i] = tmemath
 	}
 	for i:=0; i < dicenumber ; i++ { 
-		word1 := strconv.Itoa(diceresult[i-1])
+		word1 := strconv.Itoa(diceresult[i])
 		word = word + word1
 	}
 	word = word + "我不知道" + strconv.Itoa(dicenumber) + strconv.Itoa(len(diceresult))
