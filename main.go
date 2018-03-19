@@ -101,16 +101,18 @@ func ddtitle(wordin string) string {
 	word := "基本擲骰:"
 	dicenumber, diceside := cutmath(wordin)
 	diceresult := make([]int, dicenumber)
-	for a := dicenumber ; a > 0 ; a = a-1 { 
+	diceresult1 := make([]string, dicenumber)
+	for i:=0; i < len(diceresult); i++ { 
 		tmemath := diceroll(diceside) 
-		diceresult[a-1] = tmemath
+		diceresult[i-1] = tmemath
 	}
-	for a := dicenumber ; a > 0 ; a = a-1 { 
-		word1 := strconv.Itoa(diceresult[a-1])
+	for i:=0; i < len(diceresult); i++ { 
+		word1 := strconv.Itoa(diceresult[i-1])
+		diceresult1[i-1] = word1
 		word = word + word1 
 	}
-	mmmm := string(diceresult)
-	ert := word + mmmm
+	mmmm := string(diceresult1)
+	ert := word + "/n" + mmmm
 	return ert
 	
 }
