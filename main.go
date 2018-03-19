@@ -92,15 +92,15 @@ func cutmath(wordin string) int{
 	var md = regexp.MustCompile(`\d+(?i:d)`)
 	var dm = regexp.MustCompile(`(?i:d)\d+`)
 	word := mdm.FindString(wordin)
-	math1 := md.ndString(word)
-	math2 := dm.ndString(word)
+	math1 := md.FindString(word)
+	math2 := dm.FindString(word)
 	return math1 , math2
 }
 
 //普通擲骰
 func ddtitle(wordin string) string {
-	word : "基本擲骰:"
-	dicenumber , diceside := cutmath(wordin)
+	word := "基本擲骰:"
+	dicenumber, diceside := cutmath(wordin)
 	diceresult := [dicenumber]int
 	for a := dicenumber ; a > 0 ; a = a-1 { 
 		tmemath := diceroll(diceside) 
@@ -144,7 +144,7 @@ func titleread(testword string) string {
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
-	e, _ := regexp.MatchString("^(\d+(?i:d)\d+)", testword)
+	e, _ := regexp.MatchString("^\d+(?i:d)\d+", testword)
 	switch {
 		case a :
 		word = "cc"
