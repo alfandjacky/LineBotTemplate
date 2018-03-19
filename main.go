@@ -89,7 +89,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 func cutmath(wordin string) (int, int) {
         var mdm = regexp.MustCompile(`\d+(?i:d)\d+`)
 	var md = regexp.MustCompile(`^\d+`)
-	var dm = regexp.MustCompile(`$\d+`)
+	var dm = regexp.MustCompile(`\d+$`)
 	word := mdm.FindString(wordin)
 	math1 ,_ :=strconv.Atoi(md.FindString(word))
 	math2 ,_ :=strconv.Atoi(dm.FindString(word))
