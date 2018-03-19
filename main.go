@@ -139,21 +139,22 @@ func d66title() string {
 //句首判斷
 func titleread(testword string) string {
 	var word string
+	aa := true
 	a, _ := regexp.MatchString("(?i:^cc)", testword)
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
 	e, _ := regexp.MatchString("^\d+(?i:d)\d+", testword)
-	switch {
-		case a == ture :
+	switch aa{
+		case a :
 		word = "cc"
-		case b == ture :
+		case b :
 		word = "AS"
-		case c == ture :
+		case c :
 		word = "D66"
-		case d == ture :
+		case d :
 		word = "te"
-		case e == ture :
+		case e :
 		word = "DD"
 } 
 	return word
@@ -167,10 +168,10 @@ func diceroll(diceside int) int {
 
 
 //D66判定
-func d66() int {
+func d66() (int,int) {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
-	return dice1 , dice1
+	return dice1 , dice2
 }
 
 	
