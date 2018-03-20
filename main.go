@@ -92,33 +92,33 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 	switch wordin {
 			case ">=":
 		if num1 >= num2 {
-			word := "true"
+			word = "true"
 		}else{
-			word := "false"
+			word = "false"
 		}
 			case "<=":
 		if num1 <= num2 {
-			word := "true"
+			word = "true"
 		}else{
-			word := "false"
+			word = "false"
 		}
 			case "=":
 		if num1 == num2 {
-			word := "true"
+			word = "true"
 		}else{
-			word := "false"
+			word = "false"
 		}
 			case ">":
 		if num1 > num2 {
-			word := "true"
+			word = "true"
 		}else{
-			word := "false"
+			word = "false"
 		}
 			case "<":
 		if num1 < num2 {
-			word := "true"
+			word = "true"
 		}else{
-			word := "false"
+			word = "false"
 		}
 	}
 	return word
