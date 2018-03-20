@@ -147,7 +147,7 @@ func ddtitle(wordin string) string {
 	
 	if compare {
 		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
-		var numbercompare = regexp.MustCompile(`\b+$`)
+		var numbercompare = regexp.MustCompile("\b+$")
 		ase := numbercompare.FindString(fstword)
 		moon1 := comeparetype.FindString(fstword)
 		int11,_ :=strconv.Atoi(ase)  
