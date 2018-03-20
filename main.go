@@ -131,7 +131,7 @@ func ddtitle(wordin string) string {
 	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
 	fstword := firsttime.FindString(wordin)
 	compare, _ := regexp.MatchString("[0-9]+[>=<]{1,2}[0-9]+$", fstword)
-	word := "基本擲骰:\n"+"("+fstword+")=\n"
+	word := "基本擲骰:\n"+"("+fstword+")\n→"
 	times := strings.Count(fstword, "+") + 1
 	totleresult := 0
 	ttresolt := reg.FindAllString(fstword, times)
@@ -144,7 +144,7 @@ func ddtitle(wordin string) string {
 			word = word + word1 + "+"
 		}
 	}
-	word = word + "\n→" + strconv.Itoa(totleresult)
+	
 	if compare {
 		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
 		var numbercompare = regexp.MustCompile(`\b+$`)
@@ -152,6 +152,8 @@ func ddtitle(wordin string) string {
 		moon1 := comeparetype.FindString(fstword)
 		int11,_ :=strconv.Atoi(ase)  
 		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,int11)	
+	}else{
+		word = word + "\n→" + strconv.Itoa(totleresult)
 	}
 	return word
 	
