@@ -85,6 +85,30 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//判斷有沒有多次擲骰
+func ddtitle(wordin string) string {
+	word := "基本擲骰:\n"
+	var firsttime = regexp.MustCompile(`^\S+`)
+	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
+	fstword := firsttime.FindString(wordin)
+	times := strings.Count(fstword, "+") + 1
+	totleresult := 0
+	ttresolt := make([]string, times)
+	ttresolt = reg.FindAllString(fstword, times)
+	for i:= 0 ; i < times ; i++ {
+		word1 , number1 := ddone(ttresoltp[i])
+		totleresult = totleresult + number1
+		if i == times-1 {
+			word = word + word1 + ""
+		}else{
+			word = word + word1 + "+"
+		}
+	}
+	word = word + "\n→" + strconv.Itoa(totleresult)
+	return word
+	
+}
+
 //普通擲骰正則表達式提取數字
 func cutmath(wordin string) (int, int) {
         var mdm = regexp.MustCompile(`\d+(?i:d)\d+`)
@@ -97,10 +121,11 @@ func cutmath(wordin string) (int, int) {
 }
 
 //普通擲骰
-func ddtitle(wordin string) string {
-	word := "基本擲骰:\n("
+func ddone(wordin string) ( string , int ) {
+	word := "("
 	dicenumber, diceside := cutmath(wordin)
 	diceresult := make([]int, dicenumber)
+	number := 0
 	
 	for i:=0; i < dicenumber ; i++ { 
 		tmemath := diceroll(diceside) 
@@ -108,14 +133,15 @@ func ddtitle(wordin string) string {
 	}
 	for i:=0; i < dicenumber ; i++ { 
 		word1 := strconv.Itoa(diceresult[i])
+		number = number + diceresult[i]
 		if i == 0 {
 			word = word + word1
 		}else{
-		word = word +","+ word1
+		word = word +"+"+ word1
 		}
 	}
 	word = word + ")"
-	return word
+	return word , number
 	
 }
 
