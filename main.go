@@ -211,6 +211,7 @@ func coc7thtitle() string {
 func astitle() string {
 	word := "絕對隸奴擲骰:\n"
 	
+	
 	return word
 }
 
