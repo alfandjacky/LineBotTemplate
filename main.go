@@ -96,7 +96,7 @@ func ddtitle(wordin string) string {
 	totleresult := 0
 	ttresolt := reg.FindAllString(fstword, times)
 	for i:= 0 ; i < times ; i++ {
-		word1 , number1 := ddone(ttresoltp[i])
+		word1 , number1 := ddone(ttresolt[i])
 		totleresult = totleresult + number1
 		if i == times-1 {
 			word = word + word1 + ""
