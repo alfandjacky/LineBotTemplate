@@ -209,14 +209,24 @@ func coc7thtitle() string {
 
 //絕對奴隸擲骰
 func astitle() string {
-	word := "絕對隸奴擲骰:"
+	word := "絕對隸奴擲骰:\n"
+	
 	return word
 }
 
 //D66擲骰
 func d66title() string {
-	word := "D66擲骰:"
+	word := "D66擲骰:\n"
+	num1 ,num2 := strconv.Itoa(d66())
+	word = word + "(" + num1 +"," + num2 +")" 
 	return word
+}
+
+//D66判定
+func d66() (int,int) {
+	var dice1 = diceroll(6)
+	var dice2 = diceroll(6)
+	return dice1 , dice2
 }
 
 //句首判斷
@@ -250,12 +260,7 @@ func diceroll(diceside int) int {
 }
 
 
-//D66判定
-func d66() (int,int) {
-	var dice1 = diceroll(6)
-	var dice2 = diceroll(6)
-	return dice1 , dice2
-}
+
 
 	
 
