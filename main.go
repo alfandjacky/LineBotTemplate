@@ -86,17 +86,52 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//判斷有沒有比大小
-func bigsmall(wordin string) string {
-	
+//輸入比較符號與兩數字給出真偽
+func camepareto (wordin string,num1 int,num2 int)(string){
+	word := ""
+	switch wordin {
+			case ">=":
+		if num1 >= num2 {
+			word := "true"
+		}else{
+			word := "false"
+		}
+			case "<=":
+		if num1 <= num2 {
+			word := "true"
+		}else{
+			word := "false"
+		}
+			case "=":
+		if num1 == num2 {
+			word := "true"
+		}else{
+			word := "false"
+		}
+			case ">":
+		if num1 > num2 {
+			word := "true"
+		}else{
+			word := "false"
+		}
+			case "<":
+		if num1 < num2 {
+			word := "true"
+		}else{
+			word := "false"
+		}
+		return word
+	}
 }
+
 
 //執行多次普通擲骰
 func ddtitle(wordin string) string {
-	word := "基本擲骰:\n"
 	var firsttime = regexp.MustCompile(`^\S+`)
 	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
 	fstword := firsttime.FindString(wordin)
+	compare, _ := regexp.MatchString("\d+[>=<]{1,2}\d+$", fstword)
+	word := "基本擲骰:\n"+"("+fstword+")=\n"
 	times := strings.Count(fstword, "+") + 1
 	totleresult := 0
 	ttresolt := reg.FindAllString(fstword, times)
@@ -110,7 +145,13 @@ func ddtitle(wordin string) string {
 		}
 	}
 	word = word + "\n→" + strconv.Itoa(totleresult)
-	
+	if compare {
+		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
+		var numbercompare = regexp.MustCompile(`\b+$`)
+		ase := numbercompare.FindString(fstword)
+		moon1 := comeparetype.FindString(fstword)
+		wood = wood+moon1+ase+"\n→"+camepareto (moon1,totleresult,ase)	
+	}
 	return word
 	
 }
