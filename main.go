@@ -86,7 +86,12 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//判斷有沒有多次擲骰
+//判斷有沒有比大小
+func bigsmall(wordin string) string {
+	
+}
+
+//執行多次普通擲骰
 func ddtitle(wordin string) string {
 	word := "基本擲骰:\n"
 	var firsttime = regexp.MustCompile(`^\S+`)
@@ -105,6 +110,7 @@ func ddtitle(wordin string) string {
 		}
 	}
 	word = word + "\n→" + strconv.Itoa(totleresult)
+	
 	return word
 	
 }
