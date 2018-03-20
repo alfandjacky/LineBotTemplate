@@ -217,8 +217,10 @@ func astitle() string {
 //D66擲骰
 func d66title() string {
 	word := "D66擲骰:\n"
-	num1 ,num2 := strconv.Itoa(d66())
-	word = word + "(" + num1 +"," + num2 +")" 
+	num1 ,num2 := d66()
+	word1 := strconv.Itoa(num1)
+	word2 := strconv.Itoa(num2)
+	word = word + "(" + word1 +"," + word2 +")" 
 	return word
 }
 
