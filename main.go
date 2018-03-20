@@ -150,7 +150,8 @@ func ddtitle(wordin string) string {
 		var numbercompare = regexp.MustCompile(`\b+$`)
 		ase := numbercompare.FindString(fstword)
 		moon1 := comeparetype.FindString(fstword)
-		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,ase)	
+		int11,_ :=strconv.Atoi(string)  
+		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,int11)	
 	}
 	return word
 	
