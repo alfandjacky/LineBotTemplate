@@ -120,8 +120,8 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 		}else{
 			word := "false"
 		}
-		return word
 	}
+	return word
 }
 
 
@@ -130,7 +130,7 @@ func ddtitle(wordin string) string {
 	var firsttime = regexp.MustCompile(`^\S+`)
 	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
 	fstword := firsttime.FindString(wordin)
-	compare, _ := regexp.MatchString("\d+[>=<]{1,2}\d+$", fstword)
+	compare, _ := regexp.MatchString("[0-9]+[>=<]{1,2}[0-9]+$", fstword)
 	word := "基本擲骰:\n"+"("+fstword+")=\n"
 	times := strings.Count(fstword, "+") + 1
 	totleresult := 0
@@ -150,7 +150,7 @@ func ddtitle(wordin string) string {
 		var numbercompare = regexp.MustCompile(`\b+$`)
 		ase := numbercompare.FindString(fstword)
 		moon1 := comeparetype.FindString(fstword)
-		wood = wood+moon1+ase+"\n→"+camepareto (moon1,totleresult,ase)	
+		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,ase)	
 	}
 	return word
 	
