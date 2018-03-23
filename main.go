@@ -58,7 +58,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
-				title := titleread(message.Text)
+				var firsttime = regexp.MustCompile(`^\S+`)
+				fstword := firsttime.FindString(message.Text)
+				title := titleread(fstword)
 				//傳出句首是什麼
 				var wordtitle string
 				//先宣告要傳的文字再來組合
@@ -69,11 +71,12 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				case "cc":
 					wordtitle = coc7thtitle()
 				case "AS":
-					wordtitle = astitle()
+					wordtitle = astitle(fstword)
 				case "D66":
-					wordtitle = d66title()
+					_, _, word66 := d66title()
+					wordtitle = "D66擲骰:\n" + word66
 				case "DD":
-					wordtitle = ddtitle(message.Text)
+					wordtitle = ddtitle(fstword)
 				}
 				//負責傳出訊息
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
@@ -127,14 +130,12 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 
 //執行多次普通擲骰
 func ddtitle(wordin string) string {
-	var firsttime = regexp.MustCompile(`^\S+`)
 	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
-	fstword := firsttime.FindString(wordin)
-	compare, _ := regexp.MatchString("[0-9]+[>=<]{1,2}[0-9]+$", fstword)
-	word := "基本擲骰:\n"+"("+fstword+")\n→"
-	times := strings.Count(fstword, "+") + 1
+	compare, _ := regexp.MatchString("[0-9]+[>=<]{1,2}[0-9]+$", wordin)
+	word := "基本擲骰:\n"+"("+wordin+")\n→"
+	times := strings.Count(wordin, "+") + 1
 	totleresult := 0
-	ttresolt := reg.FindAllString(fstword, times)
+	ttresolt := reg.FindAllString(wordin, times)
 	for i:= 0 ; i < times ; i++ {
 		word1 , number1 := ddone(ttresolt[i])
 		totleresult = totleresult + number1
@@ -148,8 +149,8 @@ func ddtitle(wordin string) string {
 	if compare {
 		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
 		var numbercompare = regexp.MustCompile("[0-9]+$")
-		ase := numbercompare.FindString(fstword)
-		moon1 := comeparetype.FindString(fstword)
+		ase := numbercompare.FindString(wordin)
+		moon1 := comeparetype.FindString(wordin)
 		int11,_ :=strconv.Atoi(ase)  
 		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,int11)	
 	}else{
@@ -208,28 +209,46 @@ func coc7thtitle() string {
 }
 
 //絕對奴隸擲骰
-func astitle() string {
+func astitle( wordin string ) string {
 	word := "絕對隸奴擲骰:\n"
-	
+	var cutas = regexp.MustCompile("[^(?i:^as)]+")
+	ase := cutas.FindString(wordin)
+	var num1 = regexp.MustCompile("^[0-9]+")
+	number1 := num1.FindString(ase)
+	word1 ,_ :=strconv.Atoi(number1)
+	a, _ := regexp.MatchString("[^0-9]+", ase)
+	if a {
+		var num2 = regexp.MustCompile("[0-9]+$")
+		number2 := num2.FindString(ase)
+		word2 ,_ :=strconv.Atoi(number2)
+		var cutnum = regexp.MustCompile("[^0-9]+")
+		compare := cutnum.FindString(ase)
+		if campare == "vs"{
+			
+		}else{
+			
+		}
+	}
 	
 	return word
 }
-
+//絕對隸奴D66
+func asd66 (numin int) (int , string , string){
+	a , b , word66 := d66title()
+	sixtime := strings.Count(word66, "6")
+	resort := a + b - (6*sixtime)
+	sixword := strconv.Itoa(sixtime)
+	numout := numin - resort
+	return numout ,sixtime ,word66
+}
 //D66擲骰
-func d66title() string {
-	word := "D66擲骰:\n"
-	num1 ,num2 := d66()
-	word1 := strconv.Itoa(num1)
-	word2 := strconv.Itoa(num2)
-	word = word + "(" + word1 +"," + word2 +")" 
-	return word
-}
-
-//D66判定
-func d66() (int,int) {
+func d66title() (int,int,string) {
 	var dice1 = diceroll(6)
 	var dice2 = diceroll(6)
-	return dice1 , dice2
+	word1 := strconv.Itoa(dice1)
+	word2 := strconv.Itoa(dice2)
+	word = "(" + word1 +"," + word2 +")" 
+	return word
 }
 
 //句首判斷
