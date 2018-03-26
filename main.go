@@ -199,9 +199,30 @@ func ddone(wordin string) ( string , int ) {
 //測試
 func tetitle() string {
 	word := "測試輸出:"
+	var a,b,c,d,e,f int =0,0,0,0,0,0
 	for i := 0 ; i <20 ; i++ {
-		_,_,c := d66title()
-		word = word + c
+		abc := diceroll(6)
+		switch abc {
+			case 1 :
+			a++
+			case 2 :
+			b++
+			case 3 :
+			c++
+			case 4 :
+			d++
+			case 5 :
+			e++
+			case 6 :
+			f++
+		}
+		aa:=strconv.Itoa(a)  
+		bb:=strconv.Itoa(b)  
+		cc:=strconv.Itoa(c)  
+		dd:=strconv.Itoa(d)  
+		ff:=strconv.Itoa(e)  
+		ee:=strconv.Itoa(f)  
+		word = word + aa+bb+cc+dd+ee+ff
 	}
 	return word
 }
