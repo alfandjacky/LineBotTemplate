@@ -199,6 +199,10 @@ func ddone(wordin string) ( string , int ) {
 //測試
 func tetitle() string {
 	word := "測試輸出:"
+	for i := 0 ; i <20 ; i++ {
+		_,_,c := d66title()
+		word = word + c
+	}
 	return word
 }
 
