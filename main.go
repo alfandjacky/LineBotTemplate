@@ -216,7 +216,7 @@ func astitle( wordin string ) string {
 	var num1 = regexp.MustCompile("^[0-9]+")
 	number1 := num1.FindString(ase)
 	word1 ,_ :=strconv.Atoi(number1)
-	aresult,agreat,aword := asd66 (number1)
+	aresult,agreat,aword := asd66 (word1)
 	awresult ,_ :=strconv.Atoi(aresult)
 	word = word + "→" +aword
 	a, _ := regexp.MatchString("[^0-9]+", ase)
@@ -227,7 +227,7 @@ func astitle( wordin string ) string {
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
 		if campare == "vs"{
-			bresult,_,bword := asd66 (number2)
+			bresult,_,bword := asd66 (word2)
 			bwresult ,_ :=strconv.Atoi(bresult)
 			word = word + "VS" + bword + "/n→" +awresult + "VS" + bwresult +"/n→"
 			if aresult >= bresult {
@@ -239,9 +239,9 @@ func astitle( wordin string ) string {
 			
 		}else if campare == ">="{
 			if aresult >= number2 {
-				word = word + ">=" + word2 + "/n→" + awresult+ ">=" + word2+ "/n→" + "true" + "/n→DK增加" + agreat
+				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "true" + "/n→DK增加" + agreat
 			}else{
-				word = word + ">=" + word2 + "/n→" + awresult+ ">=" + word2+ "/n→" + "false" + "/n→DK增加" + agreat
+				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "false" + "/n→DK增加" + agreat
 			}
 			
 		}
