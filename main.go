@@ -210,7 +210,7 @@ func coc7thtitle() string {
 
 //絕對奴隸擲骰
 func astitle( wordin string ) string {
-	word := "絕對隸奴擲骰:\n"
+	word := "絕對隸奴擲骰:\n→"
 	var cutas = regexp.MustCompile("[^(?i:^as)]+")
 	ase := cutas.FindString(wordin)
 	var num1 = regexp.MustCompile("^[0-9]+")
@@ -218,7 +218,9 @@ func astitle( wordin string ) string {
 	word1 ,_ :=strconv.Atoi(number1)
 	aresult,agreat,aword := asd66 (word1)
 	awresult :=strconv.Itoa(aresult)
-	word = word + "→" +aword
+	word = word + aword
+	if aword == "(大失敗)" {
+	}else{
 	a, _ := regexp.MatchString("[^0-9]+", ase)
 	if a {
 		var num2 = regexp.MustCompile("[0-9]+$")
@@ -226,7 +228,7 @@ func astitle( wordin string ) string {
 		word2 ,_ :=strconv.Atoi(number2)
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
-		if campare == "vs"{
+		if compare == "vs"{
 			bresult,_,bword := asd66 (word2)
 			bwresult :=strconv.Itoa(bresult)
 			word = word + "VS" + bword + "/n→" +awresult + "VS" + bwresult +"/n→"
@@ -237,8 +239,8 @@ func astitle( wordin string ) string {
 			}
 			word = word +"/n→DK增加" + agreat
 			
-		}else if campare == ">="{
-			if aresult >= number2 {
+		}else if compare == ">="{
+			if aresult >= word2 {
 				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "true" + "/n→DK增加" + agreat
 			}else{
 				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "false" + "/n→DK增加" + agreat
@@ -248,7 +250,7 @@ func astitle( wordin string ) string {
 	}else{
 		word = word + "/n→" + awresult + "/n→" + "/n→DK增加" + agreat
 	}
-	
+	}
 	return word
 }
 //絕對隸奴D66
@@ -257,13 +259,13 @@ func asd66 (numin int) (int , string , string){
 	sixtime := strings.Count(word66, "6")
 	fivetime := strings.Count(word66, "5")
 	resort := a + b - (6*sixtime)
-	sixtime2 := sixtime**2
+	sixtime2 := sixtime^2
 	sixword := strconv.Itoa(sixtime2)
 	numout := numin - resort
 	if fivetime == 2 {
-		word66 = "大失敗"
+		word66 = "(大失敗)"
 	}
-	return numout ,sixtime ,word66
+	return numout ,sixword ,word66
 }
 //D66擲骰
 func d66title() (int,int,string) {
