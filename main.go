@@ -216,14 +216,15 @@ func tetitle() string {
 			case 6 :
 			f++
 		}
-		aa:=strconv.Itoa(a)  
+		
+	}
+	aa:=strconv.Itoa(a)  
 		bb:=strconv.Itoa(b)  
 		cc:=strconv.Itoa(c)  
 		dd:=strconv.Itoa(d)  
 		ff:=strconv.Itoa(e)  
 		ee:=strconv.Itoa(f)  
 		word = word +"\n"+aa+"\n"+bb+"\n"+cc+"\n"+dd+"\n"+ee+"\n"+ff
-	}
 	return word
 }
 
