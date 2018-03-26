@@ -217,7 +217,7 @@ func astitle( wordin string ) string {
 	number1 := num1.FindString(ase)
 	word1 ,_ :=strconv.Atoi(number1)
 	aresult,agreat,aword := asd66 (word1)
-	awresult ,_ :=strconv.Atoi(aresult)
+	awresult :=strconv.Itoa(aresult)
 	word = word + "→" +aword
 	a, _ := regexp.MatchString("[^0-9]+", ase)
 	if a {
@@ -228,7 +228,7 @@ func astitle( wordin string ) string {
 		compare := cutnum.FindString(ase)
 		if campare == "vs"{
 			bresult,_,bword := asd66 (word2)
-			bwresult ,_ :=strconv.Atoi(bresult)
+			bwresult :=strconv.Itoa(bresult)
 			word = word + "VS" + bword + "/n→" +awresult + "VS" + bwresult +"/n→"
 			if aresult >= bresult {
 				word = word + "true"
