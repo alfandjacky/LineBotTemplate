@@ -232,7 +232,7 @@ func astitle( wordin string ) string {
 		word2 ,_ :=strconv.Atoi(number2)
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
-		if compare == "vs"{
+		if compare == "v"{
 			bresult,_,bword := asd66 (word2)
 			bwresult :=strconv.Itoa(bresult)
 			word = word + "VS" + bword + "\n→" +awresult + "VS" + bwresult +"\n→"
