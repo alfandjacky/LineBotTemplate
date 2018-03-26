@@ -307,7 +307,7 @@ func d66title() (int,int,string) {
 	return dice1,dice2,word
 }
 //女僕醬判斷
-func madogo {
+func madogo () {
 	template := linebot.NewCarouselTemplate(
 	linebot.NewCarouselColumn(
 		imageURL, "hoge", "fuga",
@@ -353,7 +353,7 @@ func titleread(wordin string) string {
 		wordout = ddtitle(wordin)
 		retype = "dice"
 		
-		csae f :
+		case f :
 		madogo ()
 		wordout = "女僕醬"
 		retype = "box"
