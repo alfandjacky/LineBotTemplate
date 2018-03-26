@@ -248,7 +248,7 @@ func astitle( wordin string ) string {
 			
 		}
 	}else{
-		word = word + "/n→" + awresult + "\n→" + "\n→DK增加" + agreat
+		word = word + "\n→" + awresult + "\n→DK增加" + agreat
 	}
 	}
 	return word
@@ -259,7 +259,7 @@ func asd66 (numin int) (int , string , string){
 	sixtime := strings.Count(word66, "6")
 	fivetime := strings.Count(word66, "5")
 	resort := a + b - (6*sixtime)
-	sixtime2 := sixtime^2
+	sixtime2 := sixtime*sixtime
 	sixword := strconv.Itoa(sixtime2)
 	numout := numin - resort
 	if fivetime == 2 {
