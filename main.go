@@ -231,7 +231,7 @@ func astitle( wordin string ) string {
 		if compare == "vs"{
 			bresult,_,bword := asd66 (word2)
 			bwresult :=strconv.Itoa(bresult)
-			word = word + "VS" + bword + "/n→" +awresult + "VS" + bwresult +"/n→"
+			word = word + "VS" + bword + "\n→" +awresult + "VS" + bwresult +"\n→"
 			if aresult >= bresult {
 				word = word + "true"
 			}else{
@@ -241,14 +241,14 @@ func astitle( wordin string ) string {
 			
 		}else if compare == ">="{
 			if aresult >= word2 {
-				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "true" + "/n→DK增加" + agreat
+				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "true" + "\n→DK增加" + agreat
 			}else{
-				word = word + ">=" + number2 + "/n→" + awresult+ ">=" + number2+ "/n→" + "false" + "/n→DK增加" + agreat
+				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "false" + "\n→DK增加" + agreat
 			}
 			
 		}
 	}else{
-		word = word + "/n→" + awresult + "/n→" + "/n→DK增加" + agreat
+		word = word + "/n→" + awresult + "\n→" + "\n→DK增加" + agreat
 	}
 	}
 	return word
