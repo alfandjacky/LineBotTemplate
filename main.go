@@ -273,8 +273,8 @@ func d66title() (int,int,string) {
 	var dice2 = diceroll(6)
 	word1 := strconv.Itoa(dice1)
 	word2 := strconv.Itoa(dice2)
-	word = "(" + word1 +"," + word2 +")" 
-	return word
+	word := "(" + word1 +"," + word2 +")" 
+	return dice1,dice2,word
 }
 
 //句首判斷
