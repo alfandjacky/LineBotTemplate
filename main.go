@@ -307,8 +307,10 @@ func titleread(testword string) string {
 
 //產生隨機數
 func diceroll(diceside int) int {
-	san := rand.Intn(diceside)+1
-	return san
+	san := rand.Intn(600)+1
+	abc := san%diceside
+	
+	return abc
 }
 
 
