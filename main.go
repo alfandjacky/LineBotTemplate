@@ -222,7 +222,7 @@ func tetitle() string {
 		dd:=strconv.Itoa(d)  
 		ff:=strconv.Itoa(e)  
 		ee:=strconv.Itoa(f)  
-		word = word + aa+bb+cc+dd+ee+ff
+		word = word +"\n"+aa+"\n"+bb+"\n"+cc+"\n"+dd+"\n"+ee+"\n"+ff
 	}
 	return word
 }
