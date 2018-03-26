@@ -200,7 +200,7 @@ func ddone(wordin string) ( string , int ) {
 func tetitle() string {
 	word := "測試輸出:"
 	var a,b,c,d,e,f int =0,0,0,0,0,0
-	for i := 0 ; i <20 ; i++ {
+	for i := 0 ; i <420 ; i++ {
 		abc := diceroll(6)
 		switch abc {
 			case 1 :
