@@ -322,7 +322,7 @@ func madogo () {
 )
 }
 //句首判斷要做什麼
-func titleread(wordin string) string {
+func titleread(wordin string) (wordout,retype string) {
 	var word string
 	aa := true
 	a, _ := regexp.MatchString("(?i:^cc)", wordin)
