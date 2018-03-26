@@ -216,6 +216,9 @@ func astitle( wordin string ) string {
 	var num1 = regexp.MustCompile("^[0-9]+")
 	number1 := num1.FindString(ase)
 	word1 ,_ :=strconv.Atoi(number1)
+	aresult,agreat,aword := asd66 (number1)
+	awresult ,_ :=strconv.Atoi(aresult)
+	word = word + "→" +aword
 	a, _ := regexp.MatchString("[^0-9]+", ase)
 	if a {
 		var num2 = regexp.MustCompile("[0-9]+$")
@@ -224,10 +227,26 @@ func astitle( wordin string ) string {
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
 		if campare == "vs"{
+			bresult,_,bword := asd66 (number2)
+			bwresult ,_ :=strconv.Atoi(bresult)
+			word = word + "VS" + bword + "/n→" +awresult + "VS" + bwresult +"/n→"
+			if aresult >= bresult {
+				word = word + "true"
+			}else{
+				word = word + "false"
+			}
+			word = word +"/n→DK增加" + agreat
 			
-		}else{
+		}else if campare == ">="{
+			if aresult >= number2 {
+				word = word + ">=" + word2 + "/n→" + awresult+ ">=" + word2+ "/n→" + "true" + "/n→DK增加" + agreat
+			}else{
+				word = word + ">=" + word2 + "/n→" + awresult+ ">=" + word2+ "/n→" + "false" + "/n→DK增加" + agreat
+			}
 			
 		}
+	}else{
+		word = word + "/n→" + awresult + "/n→" + "/n→DK增加" + agreat
 	}
 	
 	return word
@@ -236,9 +255,14 @@ func astitle( wordin string ) string {
 func asd66 (numin int) (int , string , string){
 	a , b , word66 := d66title()
 	sixtime := strings.Count(word66, "6")
+	fivetime := strings.Count(word66, "5")
 	resort := a + b - (6*sixtime)
-	sixword := strconv.Itoa(sixtime)
+	sixtime2 := sixtime**2
+	sixword := strconv.Itoa(sixtime2)
 	numout := numin - resort
+	if fivetime == 2 {
+		word66 = "大失敗"
+	}
 	return numout ,sixtime ,word66
 }
 //D66擲骰
