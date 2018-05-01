@@ -1,3 +1,4 @@
+
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -35,7 +36,6 @@ func main() {
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
-	imageURL := app.appBaseURL + "/static/buttons/1040.jpg"
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
@@ -59,39 +59,36 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
-				
-				//抓取字串至第一個空格
 				var firsttime = regexp.MustCompile(`^\S+`)
 				fstword := firsttime.FindString(message.Text)
-				
-				//輸出運算結果
-				wordtitle ,retype := titleread (fstword)
-				
-				//判斷輸出類別
-				switch retype {
-				case "dice" :
-					//負責傳出訊息
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
-					        err != nil {
-						log.Print(err)
-					} 
-					//負責傳出訊息
-				case "box" :
-					if _, err := app.bot.ReplyMessage(
-									replyToken,
-							linebot.NewTemplateMessage(wordtitle, template),
-									).Do()
-					err != nil {
-									return err
-										}
-					
+				title := titleread(fstword)
+				//傳出句首是什麼
+				var wordtitle string
+				//先宣告要傳的文字再來組合
+				//下面判斷條件什麼字首做什麼事
+				switch title {
+				case "te":
+					wordtitle = tetitle()
+				case "cc":
+					wordtitle = coc7thtitle()
+				case "AS":
+					wordtitle = astitle(fstword)
+				case "D66":
+					_, _, word66 := d66title()
+					wordtitle = "D66擲骰:\n" + word66
+				case "DD":
+					wordtitle = ddtitle(fstword)
 				}
-				
+				//負責傳出訊息
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
+				        err != nil {
+					log.Print(err)
+				} 
+				//負責傳出訊息
 			}
 		}
 	}
 }
-
 
 //輸入比較符號與兩數字給出真偽
 func camepareto (wordin string,num1 int,num2 int)(string){
@@ -203,32 +200,6 @@ func ddone(wordin string) ( string , int ) {
 //測試
 func tetitle() string {
 	word := "測試輸出:"
-	var a,b,c,d,e,f int =0,0,0,0,0,0
-	for i := 0 ; i <420 ; i++ {
-		abc := diceroll(6)
-		switch abc {
-			case 1 :
-			a++
-			case 2 :
-			b++
-			case 3 :
-			c++
-			case 4 :
-			d++
-			case 5 :
-			e++
-			case 6 :
-			f++
-		}
-		
-	}
-	aa:=strconv.Itoa(a)  
-		bb:=strconv.Itoa(b)  
-		cc:=strconv.Itoa(c)  
-		dd:=strconv.Itoa(d)  
-		ff:=strconv.Itoa(e)  
-		ee:=strconv.Itoa(f)  
-		word = word +"\n"+aa+"\n"+bb+"\n"+cc+"\n"+dd+"\n"+ee+"\n"+ff
 	return word
 }
 
@@ -240,17 +211,12 @@ func coc7thtitle() string {
 
 //絕對奴隸擲骰
 func astitle( wordin string ) string {
-	word := "絕對隸奴擲骰:\n→"
+	word := "絕對隸奴擲骰:\n"
 	var cutas = regexp.MustCompile("[^(?i:^as)]+")
 	ase := cutas.FindString(wordin)
 	var num1 = regexp.MustCompile("^[0-9]+")
 	number1 := num1.FindString(ase)
 	word1 ,_ :=strconv.Atoi(number1)
-	aresult,agreat,aword := asd66 (word1)
-	awresult :=strconv.Itoa(aresult)
-	word = word + aword
-	if aword == "(大失敗)" {
-	}else{
 	a, _ := regexp.MatchString("[^0-9]+", ase)
 	if a {
 		var num2 = regexp.MustCompile("[0-9]+$")
@@ -258,44 +224,23 @@ func astitle( wordin string ) string {
 		word2 ,_ :=strconv.Atoi(number2)
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
-		if compare == "v"{
-			bresult,_,bword := asd66 (word2)
-			bwresult :=strconv.Itoa(bresult)
-			word = word + "VS" + bword + "\n→" + "(" + awresult+ ")" + "VS" + "(" + bwresult + ")" +"\n→"
-			if aresult >= bresult {
-				word = word + "true"
-			}else{
-				word = word + "false"
-			}
-			word = word +"\n→DK增加" + agreat
+		if campare == "vs"{
 			
-		}else if compare == ">="{
-			if aresult >= word2 {
-				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "true" + "\n→DK增加" + agreat
-			}else{
-				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "false" + "\n→DK增加" + agreat
-			}
+		}else{
 			
 		}
-	}else{
-		word = word + "\n→" + awresult + "\n→DK增加" + agreat
 	}
-	}
+	
 	return word
 }
 //絕對隸奴D66
 func asd66 (numin int) (int , string , string){
 	a , b , word66 := d66title()
 	sixtime := strings.Count(word66, "6")
-	fivetime := strings.Count(word66, "5")
 	resort := a + b - (6*sixtime)
-	sixtime2 := sixtime*sixtime
-	sixword := strconv.Itoa(sixtime2)
+	sixword := strconv.Itoa(sixtime)
 	numout := numin - resort
-	if fivetime == 2 {
-		word66 = "(大失敗)"
-	}
-	return numout ,sixword ,word66
+	return numout ,sixtime ,word66
 }
 //D66擲骰
 func d66title() (int,int,string) {
@@ -303,64 +248,34 @@ func d66title() (int,int,string) {
 	var dice2 = diceroll(6)
 	word1 := strconv.Itoa(dice1)
 	word2 := strconv.Itoa(dice2)
-	word := "(" + word1 +"," + word2 +")" 
-	return dice1,dice2,word
+	word = "(" + word1 +"," + word2 +")" 
+	return word
 }
-//女僕醬判斷
-func madogo () {
-	template := linebot.NewCarouselTemplate(
-	linebot.NewCarouselColumn(
-		imageURL, "hoge", "fuga",
-		linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-		linebot.NewPostbackTemplateAction("Say hello1", "hello こんにちは", ""),
-	),
-	linebot.NewCarouselColumn(
-		imageURL, "hoge", "fuga",
-		linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
-		linebot.NewMessageTemplateAction("Say message", "Rice=米"),
-	),
-)
-}
-//句首判斷要做什麼
-func titleread(wordin string) (wordout,retype string) {
+
+//句首判斷
+func titleread(testword string) string {
 	var word string
 	aa := true
-	a, _ := regexp.MatchString("(?i:^cc)", wordin)
-	b, _ := regexp.MatchString("(?i:^AS)[0-9]", wordin)
-	c, _ := regexp.MatchString("(?i:^D66)", wordin)
-	d, _ := regexp.MatchString("(?i:^te)", wordin)
-	e, _ := regexp.MatchString("^[0-9]+(?i:d)[0-9]+", wordin)
-	f, _ := regexp.MatchString("^[女][僕][醬]", wordin)
+	a, _ := regexp.MatchString("(?i:^cc)", testword)
+	b, _ := regexp.MatchString("(?i:^AS)", testword)
+	c, _ := regexp.MatchString("(?i:^D66)", testword)
+	d, _ := regexp.MatchString("(?i:^te)", testword)
+	e, _ := regexp.MatchString("^[0-9]+(?i:d)[0-9]+", testword)
 	switch aa{
 		case a :
-		wordout = coc7thtitle()
-		retype = "dice"
-		
+		word = "cc"
 		case b :
-		wordout = astitle(wordin)
-		retype = "dice"
-		
+		word = "AS"
 		case c :
-		_, _, word66 := d66title()
-		wordout = "D66擲骰:\n" + word66
-		retype = "dice"
-		
+		word = "D66"
 		case d :
-		wordout = tetitle()
-		retype = "dice"
-		
+		word = "te"
 		case e :
-		wordout = ddtitle(wordin)
-		retype = "dice"
-		
-		case f :
-		madogo ()
-		wordout = "女僕醬"
-		retype = "box"
-	} 
-	return wordout,retype
+		word = "DD"
+} 
+	return word
 }
-	
+
 //產生隨機數
 func diceroll(diceside int) int {
 	san := rand.Intn(diceside)+1
