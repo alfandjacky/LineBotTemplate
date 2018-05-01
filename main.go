@@ -308,7 +308,7 @@ func d66title() (int,int,string) {
 func titleread(testword string) string {
 	var word string
 	aa := true
-	a, _ := regexp.MatchString("(?i:^cc)[0-9]", testword)
+	a, _ := regexp.MatchString("(?i:^cc)", testword)
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
