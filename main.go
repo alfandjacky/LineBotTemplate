@@ -147,7 +147,7 @@ func ddtitle(wordin string) string {
 		}
 	}
 	
-	if compareto {
+	if compare {
 		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
 		var numbercompare = regexp.MustCompile("[0-9]+$")
 		ase := numbercompare.FindString(wordin)
@@ -200,6 +200,32 @@ func ddone(wordin string) ( string , int ) {
 //測試
 func tetitle() string {
 	word := "測試輸出:"
+	var a,b,c,d,e,f int =0,0,0,0,0,0
+	for i := 0 ; i <420 ; i++ {
+		abc := diceroll(6)
+		switch abc {
+			case 1 :
+			a++
+			case 2 :
+			b++
+			case 3 :
+			c++
+			case 4 :
+			d++
+			case 5 :
+			e++
+			case 6 :
+			f++
+		}
+		
+	}
+	aa:=strconv.Itoa(a)  
+		bb:=strconv.Itoa(b)  
+		cc:=strconv.Itoa(c)  
+		dd:=strconv.Itoa(d)  
+		ff:=strconv.Itoa(e)  
+		ee:=strconv.Itoa(f)  
+		word = word +"\n"+aa+"\n"+bb+"\n"+cc+"\n"+dd+"\n"+ee+"\n"+ff
 	return word
 }
 
@@ -211,12 +237,17 @@ func coc7thtitle() string {
 
 //絕對奴隸擲骰
 func astitle( wordin string ) string {
-	word := "絕對隸奴擲骰:\n"
+	word := "絕對隸奴擲骰:\n→"
 	var cutas = regexp.MustCompile("[^(?i:^as)]+")
 	ase := cutas.FindString(wordin)
 	var num1 = regexp.MustCompile("^[0-9]+")
 	number1 := num1.FindString(ase)
 	word1 ,_ :=strconv.Atoi(number1)
+	aresult,agreat,aword := asd66 (word1)
+	awresult :=strconv.Itoa(aresult)
+	word = word + aword
+	if aword == "(大失敗)" {
+	}else{
 	a, _ := regexp.MatchString("[^0-9]+", ase)
 	if a {
 		var num2 = regexp.MustCompile("[0-9]+$")
@@ -224,23 +255,44 @@ func astitle( wordin string ) string {
 		word2 ,_ :=strconv.Atoi(number2)
 		var cutnum = regexp.MustCompile("[^0-9]+")
 		compare := cutnum.FindString(ase)
-		if campare == "vs"{
+		if compare == "v"{
+			bresult,_,bword := asd66 (word2)
+			bwresult :=strconv.Itoa(bresult)
+			word = word + "VS" + bword + "\n→" + "(" + awresult+ ")" + "VS" + "(" + bwresult + ")" +"\n→"
+			if aresult >= bresult {
+				word = word + "true"
+			}else{
+				word = word + "false"
+			}
+			word = word +"\n→DK增加" + agreat
 			
-		}else{
+		}else if compare == ">="{
+			if aresult >= word2 {
+				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "true" + "\n→DK增加" + agreat
+			}else{
+				word = word + ">=" + number2 + "\n→" + awresult+ ">=" + number2+ "\n→" + "false" + "\n→DK增加" + agreat
+			}
 			
 		}
+	}else{
+		word = word + "\n→" + awresult + "\n→DK增加" + agreat
 	}
-	
+	}
 	return word
 }
 //絕對隸奴D66
 func asd66 (numin int) (int , string , string){
 	a , b , word66 := d66title()
 	sixtime := strings.Count(word66, "6")
+	fivetime := strings.Count(word66, "5")
 	resort := a + b - (6*sixtime)
-	sixword := strconv.Itoa(sixtime)
+	sixtime2 := sixtime*sixtime
+	sixword := strconv.Itoa(sixtime2)
 	numout := numin - resort
-	return numout ,sixtime ,word66
+	if fivetime == 2 {
+		word66 = "(大失敗)"
+	}
+	return numout ,sixword ,word66
 }
 //D66擲骰
 func d66title() (int,int,string) {
@@ -248,15 +300,15 @@ func d66title() (int,int,string) {
 	var dice2 = diceroll(6)
 	word1 := strconv.Itoa(dice1)
 	word2 := strconv.Itoa(dice2)
-	word = "(" + word1 +"," + word2 +")" 
-	return word
+	word := "(" + word1 +"," + word2 +")" 
+	return dice1,dice2,word
 }
 
 //句首判斷
 func titleread(testword string) string {
 	var word string
 	aa := true
-	a, _ := regexp.MatchString("(?i:^cc)", testword)
+	a, _ := regexp.MatchString("(?i:^cc)[0-9]", testword)
 	b, _ := regexp.MatchString("(?i:^AS)", testword)
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
