@@ -147,7 +147,7 @@ func ddtitle(wordin string) string {
 		}
 	}
 	
-	if compare {
+	if compareto {
 		var comeparetype = regexp.MustCompile(`[>=<]{1,2}`)
 		var numbercompare = regexp.MustCompile("[0-9]+$")
 		ase := numbercompare.FindString(wordin)
