@@ -135,8 +135,8 @@ func dddtitle(wordin string) string {
 	word := ""
 	for i:= 0 ; i < times ; i++ {
 		ii :=strconv.Itoa(i)
-		word1 := "→"+ii+"#" ddtitle(wordin)+"\n"
-		word = word + word1
+		word2 := "→"+ii+"#" ddtitle(wordin)+"\n"
+		word = word + word2
 	}
 	return word
 }
