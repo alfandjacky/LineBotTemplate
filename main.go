@@ -131,8 +131,9 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 //複數擲骰
 func dddtitle(wordin string) string {
 	var howmanytimes = regexp.MustCompile("^[0-9]+")
-	times := howmanytimes.FindString(wordin)
+	time := howmanytimes.FindString(wordin)
 	word := ""
+	times,err:=strconv.Atoi(time) 
 	for i:= 0 ; i < times ; i++ {
 		ii :=strconv.Itoa(i)
 		word2 := "→"+ii+"#"+ ddtitle(wordin)+"\n"
