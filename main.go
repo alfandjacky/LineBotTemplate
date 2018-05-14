@@ -133,7 +133,7 @@ func dddtitle(wordin string) string {
 	var howmanytimes = regexp.MustCompile("^[0-9]+")
 	time := howmanytimes.FindString(wordin)
 	time = time + " "
-	wword := string.Trim(wordin,time)
+	wword := strings.Trim(wordin,time)
 	word := ""
 	times,_:=strconv.Atoi(time) 
 	for i:= 0 ; i < times ; i++ {
