@@ -251,7 +251,7 @@ func coc7thtitle() string {
 //絕對奴隸擲骰
 func astitle( wordin string ) string {
 	word := "絕對隸奴擲骰:\n→"
-	var cutas = regexp.MustCompile("[^(?i:^as)]+")
+	var cutas = regexp.MustCompile("[^(?i:^AS)]+")
 	ase := cutas.FindString(wordin)
 	var num1 = regexp.MustCompile("^[0-9]+")
 	number1 := num1.FindString(ase)
