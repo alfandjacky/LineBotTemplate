@@ -59,7 +59,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				//以上已經篩選好訊息 純文字
-				title := message.Text
+				title := titleread(message.Text)
 				//傳出句首是什麼
 				var wordtitle string
 				//先宣告要傳的文字再來組合
@@ -75,9 +75,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					_, _, word66 := d66title()
 					wordtitle = "D66擲骰:\n" + word66
 				case "DD":
-					wordtitle = "基本擲骰:\n"+ ddtitle(fstword)
+					wordtitle = "基本擲骰:\n"+ ddtitle(message.Text)
 				case "DDD":
-					wordtitle = "複數擲骰:\n"+dddtitle(fstword)
+					wordtitle = "複數擲骰:\n"+dddtitle(message.Text)
 				}
 				//負責傳出訊息
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
