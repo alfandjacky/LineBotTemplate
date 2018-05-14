@@ -76,7 +76,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					wordtitle = "D66擲骰:\n" + word66
 				case "DD":
 					wordtitle = "基本擲骰:\n"+ ddtitle(fstword)
-				case "DDD"
+				case "DDD":
 					wordtitle = "複數擲骰:\n"+dddtitle(fstword)
 				}
 				//負責傳出訊息
@@ -135,7 +135,7 @@ func dddtitle(wordin string) string {
 	word := ""
 	for i:= 0 ; i < times ; i++ {
 		ii :=strconv.Itoa(i)
-		word1= "→"+ii+"#" ddtitle(wordin)+"\n"
+		word1 := "→"+ii+"#" ddtitle(wordin)+"\n"
 		word = word + word1
 	}
 	return word
