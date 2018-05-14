@@ -77,7 +77,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					_, _, word66 := d66title()
 					wordtitle = "D66擲骰:\n" + word66
 				case "DD":
-					wordtitle = ddtitle(fstword)
+					wordtitle = "基本擲骰:\n"+ ddtitle(fstword)
+				case "DDD"
+					wordtitle = "複數擲骰:\n"+dddtitle(fstword)
 				}
 				//負責傳出訊息
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(wordtitle)).Do()
@@ -128,12 +130,27 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 	return word
 }
 
+//複數擲骰
+func dddtitle(wordin string) string {
+	var howmanytimes = regexp.MustCompile("^[0-9]+")
+	times := howmanytimes.FindString(wordin)
+	word := ""
+	for i:= 0 ; i < times ; i++ {
+		word1 , number1 := ddone(ttresolt[i])
+		totleresult = totleresult + number1
+		if i == times-1 {
+			word = word + word1 + ""
+		}else{
+			word = word + word1 + "+"
+		}
 
-//執行多次普通擲骰
+}
+
+//執行四則普通擲骰
 func ddtitle(wordin string) string {
 	var reg = regexp.MustCompile(`\d+(?i:d)\d+`)
 	compare, _ := regexp.MatchString("[0-9]+[>=<]{1,2}[0-9]+$", wordin)
-	word := "基本擲骰:\n"+"("+wordin+")\n→"
+	word := "("+wordin+")\n→"
 	times := strings.Count(wordin, "+") + 1
 	totleresult := 0
 	ttresolt := reg.FindAllString(wordin, times)
@@ -313,6 +330,7 @@ func titleread(testword string) string {
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
 	e, _ := regexp.MatchString("^[0-9]+(?i:d)[0-9]+", testword)
+	f, _ := regexp.MatchString("^[0-9]+\([\t\n\f\r ]+\)", testword)
 	switch aa{
 		case a :
 		word = "cc"
@@ -324,6 +342,8 @@ func titleread(testword string) string {
 		word = "te"
 		case e :
 		word = "DD"
+		case f :
+		word = "DDD"
 } 
 	return word
 }
