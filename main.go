@@ -135,7 +135,7 @@ func dddtitle(wordin string) string {
 	word := ""
 	times,_:=strconv.Atoi(time) 
 	for i:= 0 ; i < times ; i++ {
-		ii :=strconv.Itoa(i)
+		ii :=strconv.Itoa(i+1)
 		word2 := "→"+ii+"#"+ ddtitle(wordin)+"\n"
 		word = word + word2
 	}
