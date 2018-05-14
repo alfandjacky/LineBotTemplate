@@ -132,11 +132,13 @@ func camepareto (wordin string,num1 int,num2 int)(string){
 func dddtitle(wordin string) string {
 	var howmanytimes = regexp.MustCompile("^[0-9]+")
 	time := howmanytimes.FindString(wordin)
+	time = time + " "
+	wword := string.Trim(wordin,time)
 	word := ""
 	times,_:=strconv.Atoi(time) 
 	for i:= 0 ; i < times ; i++ {
 		ii :=strconv.Itoa(i+1)
-		word2 := "→"+ii+"#"+ ddtitle(wordin)+"\n"
+		word2 := ii+"#"+ ddtitle(wword)+"\n"
 		word = word + word2
 	}
 	return word
@@ -166,9 +168,9 @@ func ddtitle(wordin string) string {
 		ase := numbercompare.FindString(wordin)
 		moon1 := comeparetype.FindString(wordin)
 		int11,_ :=strconv.Atoi(ase)  
-		word = word+moon1+ase+"\n→"+camepareto (moon1,totleresult,int11)	
+		word = word+moon1+ase+"→"+camepareto (moon1,totleresult,int11)	
 	}else{
-		word = word + "\n→" + strconv.Itoa(totleresult)
+		word = word + "→" + strconv.Itoa(totleresult)
 	}
 	return word
 	
