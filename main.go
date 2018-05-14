@@ -327,7 +327,7 @@ func titleread(testword string) string {
 	c, _ := regexp.MatchString("(?i:^D66)", testword)
 	d, _ := regexp.MatchString("(?i:^te)", testword)
 	e, _ := regexp.MatchString("^[0-9]+(?i:d)[0-9]+", testword)
-	f, _ := regexp.MatchString('^[0-9]+[\(][\t\n\f\r ]+[\)]', testword)
+	f, _ := regexp.MatchString("^[0-9]+[\(][\t\n\f\r ]+[\)]", testword)
 	switch aa{
 		case a :
 		word = "cc"
