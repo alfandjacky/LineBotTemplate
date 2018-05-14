@@ -70,7 +70,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				case "cc":
 					wordtitle = coc7thtitle()
 				case "AS":
-					wordtitle = astitle(fstword)
+					wordtitle = astitle(message.Text)
 				case "D66":
 					_, _, word66 := d66title()
 					wordtitle = "D66擲骰:\n" + word66
