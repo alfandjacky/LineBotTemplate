@@ -249,7 +249,7 @@ func coc7thtitle() string {
 }
 
 //絕對奴隸擲骰
-func astitle( wordin string ) string {[^字符类]
+func astitle( wordin string ) string {
 	word := "絕對隸奴擲骰:\n→"
 	var cutas = regexp.MustCompile("[^AaSs]+")
 	ase := cutas.FindString(wordin)
