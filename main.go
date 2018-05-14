@@ -136,14 +136,11 @@ func dddtitle(wordin string) string {
 	times := howmanytimes.FindString(wordin)
 	word := ""
 	for i:= 0 ; i < times ; i++ {
-		word1 , number1 := ddone(ttresolt[i])
-		totleresult = totleresult + number1
-		if i == times-1 {
-			word = word + word1 + ""
-		}else{
-			word = word + word1 + "+"
-		}
-
+		ii :=strconv.Itoa(i)
+		word1= "→"+ii+"#" ddtitle(wordin)+"\n"
+		word = word + word1
+	}
+	return word
 }
 
 //執行四則普通擲骰
